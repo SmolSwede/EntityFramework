@@ -12,10 +12,6 @@ namespace EntityFramework.Services
     {
         private readonly ApplicationDbContext _context;
 
-        public PersonService()
-        {
-        }
-
         public PersonService(ApplicationDbContext context)
         {
             _context = context;
@@ -51,6 +47,21 @@ namespace EntityFramework.Services
             _context.SaveChanges();
 
             return newPerson;
+        }
+
+        public bool Remove(int id)
+        {
+            Person original = Read(id);
+
+            if(original == null)
+            {
+                return false;
+            }
+
+            _context.People.Remove(original);
+            _context.SaveChanges();
+
+            return true;
         }
     }
 }

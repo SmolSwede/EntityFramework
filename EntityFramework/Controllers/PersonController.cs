@@ -1,4 +1,5 @@
-﻿using EntityFramework.Models;
+﻿using EntityFramework.Data;
+using EntityFramework.Models;
 using EntityFramework.Services;
 using EntityFramework.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,12 @@ namespace EntityFramework.Controllers
     {
         private PersonService personService;
 
-        public PersonController()
+        private readonly ApplicationDbContext _context;
+
+        public PersonController(ApplicationDbContext context)
         {
-            personService = new PersonService();
+            _context = context;
+            personService = new PersonService(_context);
         }
         
         [HttpGet]
@@ -48,6 +52,13 @@ namespace EntityFramework.Controllers
             }
 
             return View("Index", createPersonVM);
+        }
+
+        public IActionResult Remove(int id)
+        {
+            personService.Remove(id);
+
+            return RedirectToAction(nameof(Index));
         }
 
 
