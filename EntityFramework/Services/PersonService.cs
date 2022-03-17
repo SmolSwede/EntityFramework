@@ -36,11 +36,12 @@ namespace EntityFramework.Services
 
         public Person Create(CreatePersonViewModel createPersonVM)
         {
+
             Person newPerson = new Person()
             {
                 FirstName = createPersonVM.FirstName,
                 LastName = createPersonVM.LastName,
-                City = createPersonVM.City
+                CityID = createPersonVM.City,
             };
 
             _context.People.Add(newPerson);

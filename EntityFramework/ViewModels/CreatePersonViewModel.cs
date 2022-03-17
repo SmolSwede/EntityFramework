@@ -20,8 +20,8 @@ namespace EntityFramework.ViewModels
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "City")]
-        public string City { get; set; }
+        [Display(Name = "Place of Origin")]
+        public int City { get; set; }
 
         public List<Person> PeopleList = new List<Person>();
 
@@ -29,7 +29,7 @@ namespace EntityFramework.ViewModels
         {
         }
 
-        public CreatePersonViewModel(string firstName, string lastName, string city)
+        public CreatePersonViewModel(string firstName, string lastName, int city)
         {
             FirstName = firstName;
             LastName = lastName;

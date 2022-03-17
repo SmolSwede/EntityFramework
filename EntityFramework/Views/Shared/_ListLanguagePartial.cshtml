@@ -1,0 +1,30 @@
+﻿@model List<Language>
+
+<div>
+    <h3>Exsisting countrys</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Language ID</th>
+                <th>Language Name</th>
+                <th>Language Speakers</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Language in Model)
+                    {
+                        <tr>
+                            <td>@Language.LangID</td>
+                            <td>@Language.LangName</td>
+                            <td>@Language.PersonLanguages</td>S
+                            <td>@Html.ActionLink("Remove", "Remove", "Language", new { id = Language.LangID })</td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

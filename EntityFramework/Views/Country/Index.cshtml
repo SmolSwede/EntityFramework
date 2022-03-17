@@ -1,0 +1,23 @@
+﻿@model CreateCountryViewModel
+
+<div>
+    <div>
+        <h2>List of Countrys</h2>
+        <div>
+            <partial name="_ListCountryPartial" model="Model.CountryList" />
+        </div>
+    </div>
+    <div>
+        <form asp-action="CreateCountry" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CountryName" class="control-label"></label><br />
+                <input asp-for="CountryName" class="form-control">
+                <span asp-validation-for="CountryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

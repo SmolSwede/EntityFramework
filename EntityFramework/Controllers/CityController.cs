@@ -10,46 +10,40 @@ using System.Threading.Tasks;
 
 namespace EntityFramework.Controllers
 {
-    public class PersonController : Controller
+    public class CityController : Controller
     {
-        private PersonService personService;
-        private DataBaseSeedingService databaseSeedingService;
+        private CityService cityService;
 
         private readonly ApplicationDbContext _context;
 
-        public PersonController(ApplicationDbContext context)
+        public CityController(ApplicationDbContext context)
         {
             _context = context;
-            personService = new PersonService(_context);
-            databaseSeedingService = new DataBaseSeedingService(_context);
+            cityService = new CityService(_context);
         }
 
-    [HttpGet]
+        [HttpGet]
         public IActionResult Index()
         {
+            CreateCityViewModel createCityVM = new CreateCityViewModel();
 
-            //databaseSeedingService.SeedDatabase();
-
-
-            CreatePersonViewModel createPersonVM = new CreatePersonViewModel();
-
-            if(personService.Read() != null)
+            if (cityService.Read() != null)
             {
-                createPersonVM.PeopleList = personService.Read();
+                createCityVM.CityList = cityService.Read();
             }
 
-            return View(createPersonVM);
+            return View(createCityVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreatePerson(CreatePersonViewModel createPersonVM)
+        public IActionResult CreateCity(CreateCityViewModel createCityVM)
         {
             if (ModelState.IsValid)
             {
-                Person person = personService.Create(createPersonVM);
+                City city = cityService.Create(createCityVM);
 
-                if(person != null)
+                if (city != null)
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -57,17 +51,14 @@ namespace EntityFramework.Controllers
                 ModelState.AddModelError("Storage", "Failed to save person");
             }
 
-            return View("Index", createPersonVM);
+            return View("Index", createCityVM);
         }
 
         public IActionResult Remove(int id)
         {
-            personService.Remove(id);
+            cityService.Remove(id);
 
             return RedirectToAction(nameof(Index));
         }
-
-
-
     }
 }

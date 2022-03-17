@@ -1,0 +1,28 @@
+﻿@model CreateCityViewModel
+
+<div>
+    <div>
+        <h2>List of Cities</h2>
+        <div>
+            <partial name="_ListCitiesPartial" model="Model.CityList" />
+        </div>
+    </div>
+    <div>
+        <form asp-action="CreateCity" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label><br />
+                <input asp-for="CityName" class="form-control">
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label><br />
+                <input asp-for="Country" class="form-control">
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

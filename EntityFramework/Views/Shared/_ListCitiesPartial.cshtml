@@ -1,0 +1,30 @@
+﻿@model List<City>
+
+<div>
+    <h3>Exsisting countrys</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>City ID</th>
+                <th>City Name</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var City in Model)
+                    {
+                        <tr>
+                            <td>@City.CityID</td>
+                            <td>@City.CityName</td>
+                            <td>@City.Country</td>
+                            <td>@Html.ActionLink("Remove", "Remove", "City", new { id = City.CityID })</td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

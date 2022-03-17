@@ -4,14 +4,16 @@ using EntityFramework.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220317171901_Chaged PersonLanguage")]
+    partial class ChagedPersonLanguage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,12 +156,6 @@ namespace EntityFramework.Migrations
                     b.Property<int>("PersonID")
                         .HasColumnType("int");
 
-                    b.Property<int>("LanguageLangID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonLanguageID")
-                        .HasColumnType("int");
-
                     b.HasKey("LangID", "PersonID");
 
                     b.HasIndex("PersonID");
@@ -170,23 +166,17 @@ namespace EntityFramework.Migrations
                         new
                         {
                             LangID = 1,
-                            PersonID = 1,
-                            LanguageLangID = 0,
-                            PersonLanguageID = 0
+                            PersonID = 1
                         },
                         new
                         {
                             LangID = 1,
-                            PersonID = 2,
-                            LanguageLangID = 0,
-                            PersonLanguageID = 0
+                            PersonID = 2
                         },
                         new
                         {
                             LangID = 2,
-                            PersonID = 2,
-                            LanguageLangID = 0,
-                            PersonLanguageID = 0
+                            PersonID = 2
                         });
                 });
 
